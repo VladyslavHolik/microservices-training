@@ -1,4 +1,4 @@
-package com.microservice.customer.dto;
+package com.microservice.clients.fraud;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
