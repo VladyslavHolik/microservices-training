@@ -47,30 +47,30 @@ services:
     networks:
       - spring
 
-  eureka-server:
-    image: vladyslavholik/eureka-server:latest
-    container_name: eureka-server
-    ports:
-      - "8761:8761"
-    networks:
-      - spring
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-    depends_on:
-      - zipkin
-
-  api-gateway:
-    image: vladyslavholik/apigateway:latest
-    container_name: api-gateway
-    ports:
-      - "8088:8088"
-    networks:
-      - spring
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-    depends_on:
-      - zipkin
-      - eureka-server
+#  eureka-server:
+#    image: vladyslavholik/eureka-server:latest
+#    container_name: eureka-server
+#    ports:
+#      - "8761:8761"
+#    networks:
+#      - spring
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=docker
+#    depends_on:
+#      - zipkin
+#
+#  api-gateway:
+#    image: vladyslavholik/apigateway:latest
+#    container_name: api-gateway
+#    ports:
+#      - "8088:8088"
+#    networks:
+#      - spring
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=docker
+#    depends_on:
+#      - zipkin
+#      - eureka-server
 
   customer:
     image: vladyslavholik/customer:latest
@@ -79,7 +79,6 @@ services:
       - "8080:8080"
     depends_on:
       - zipkin
-      - eureka-server
       - fraud
       - rabbitmq
       - postgres
@@ -96,7 +95,6 @@ services:
       - "8081:8081"
     depends_on:
       - zipkin
-      - eureka-server
       - postgres
     networks:
       - spring
@@ -111,7 +109,6 @@ services:
       - "8086:8086"
     depends_on:
       - zipkin
-      - eureka-server
       - rabbitmq
       - postgres
     networks:
